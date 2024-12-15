@@ -36,6 +36,7 @@ public class StudentService {
         return studentRepository.findByUsername(username);
     }
 
+
     // Method to update a student
     public StudentModel updateStudent(String id, StudentModel studentDetails) {
         Optional<StudentModel> student = studentRepository.findById(id);

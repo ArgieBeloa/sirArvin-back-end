@@ -48,6 +48,17 @@ public class StudentController {
             return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
         }
 
+    // PUT endpoint to update a student by id
+    @PutMapping("/update/{id}")
+    public ResponseEntity<StudentModel> updateStudentById(@PathVariable String id, @RequestBody StudentModel studentDetails) {
+        StudentModel updatedStudent = studentService.updateStudent(id, studentDetails);
+        if (updatedStudent != null) {
+            return new ResponseEntity<>(updatedStudent, HttpStatus.OK); // Return updated student with 200 OK
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Return 404 if student not found
+        }
+    }
+
         // Endpoint to delete a student by ID
         @DeleteMapping("/{id}")
         public ResponseEntity<Void> deleteStudent(@PathVariable String id) {
